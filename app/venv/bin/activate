@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=/Users/gkats/Projects/HL7-Converter/backend/venv
+VIRTUAL_ENV=/Users/gkats/Projects/HL7-Converter/app/venv
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

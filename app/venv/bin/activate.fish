@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /Users/gkats/Projects/HL7-Converter/backend/venv
+set -gx VIRTUAL_ENV /Users/gkats/Projects/HL7-Converter/app/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

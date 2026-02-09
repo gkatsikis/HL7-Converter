@@ -1,4 +1,4 @@
-#!/Users/gkats/Projects/HL7-Converter/backend/venv/bin/python3.11
+#!/Users/gkats/Projects/HL7-Converter/app/venv/bin/python3.11
 import sys
 from pip._internal.cli.main import main
 if __name__ == '__main__':
