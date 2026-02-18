@@ -142,4 +142,8 @@ def test_hl7_parser():
 
     payload = hl7_parser(hl7_sample)
 
+    assert set(payload.keys()) == {'MSH', 'EVN', 'PID', 'PV1'}
+
+    assert payload['PID'][5] == "Doe^John^A"
+    assert payload['PID'][7] == "19800115"
     assert parsed_output == payload
