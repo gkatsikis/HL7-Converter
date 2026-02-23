@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HL7 to FHIR Converter</title>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+        #submit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #copy-btn {
+            background-color: #2196F3;
+            color: white;
+            display: none;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .error {
+            background-color: #ffe0e0;
+            color: #cc0000;
+            border: 1px solid #cc0000;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>HL7 v2.x to FHIR R4 Converter</h1>
+    <p>Paste an HL7 v2.x ADT^A01 message below and click Convert.</p>
+
+    <form hx-post="/convert" hx-target="#result" hx-swap="innerHTML">
+        <textarea id="hl7-input" name="hl7_message" placeholder="Paste your HL7 message here..."></textarea>
+        <button id="submit-btn" type="submit">Convert to FHIR</button>
+    </form>
+
+    <button id="copy-btn" onclick="copyResult()">Copy JSON</button>
+
+    <div id="result"></div>
+
+    <script>
+        // Show copy button when result appears
+        document.body.addEventListener('htmx:afterSwap', function(event) {
+            if (event.detail.target.id === 'result') {
+                document.getElementById('copy-btn').style.display = 'inline-block';
+            }
+        });
+
+        function copyResult() {
+            const resultText = document.querySelector('#result pre').innerText;
+            navigator.clipboard.writeText(resultText).then(function() {
+                const btn = document.getElementById('copy-btn');
+                btn.innerText = 'Copied!';
+                setTimeout(function() {
+                    btn.innerText = 'Copy JSON';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
