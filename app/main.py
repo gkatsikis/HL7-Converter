@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.routers.convert import router
 
 app = FastAPI(
     title="HL7 to FHIR Converter microservice",
@@ -10,3 +11,5 @@ app = FastAPI(
 @app.get("/health", tags=["System"])
 def health_check():
     return {"status": "ok"}
+
+app.include_router(router)
