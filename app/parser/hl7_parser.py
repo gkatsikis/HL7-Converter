@@ -6,4 +6,6 @@ def hl7_parser(hl7_message: str) -> dict:
         split_segment = segment.split("|")
         parsed_output[split_segment[0]] = split_segment
 
+    print('parsed stuf...', parsed_output)
+
     return parsed_output
